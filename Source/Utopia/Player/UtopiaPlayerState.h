@@ -16,5 +16,6 @@ class UTOPIA_API AUtopiaPlayerState : public APlayerState
 
 public:
 	AUtopiaPlayerState();
+
 	
 };

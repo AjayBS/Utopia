@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "AbilitySystemInterface.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "Logging/LogMacros.h"
@@ -14,10 +15,13 @@ class UInputAction;
 class UInputMappingContext;
 struct FInputActionValue;
 
+class UAbilitySystemComponent;
+class UAttributeSet;
+
 DECLARE_LOG_CATEGORY_EXTERN(LogTemplateCharacter, Log, All);
 
 UCLASS(config=Game)
-class AUtopiaCharacter : public ACharacter
+class AUtopiaCharacter : public ACharacter, public IAbilitySystemInterface
 {
 	GENERATED_BODY()
 
@@ -38,7 +42,9 @@ class AUtopiaCharacter : public ACharacter
 	UInputAction* MoveAction;
 	
 public:
-	AUtopiaCharacter();
+	AUtopiaCharacter(); 
+	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
+	UAttributeSet* GetAttributeSet() const { return AttributeSet; }
 
 protected:
 	virtual void BeginPlay();
@@ -50,6 +56,13 @@ public:
 	class UInputAction* LookAction;
 
 protected:
+protected:
+	UPROPERTY()
+	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
+
+	UPROPERTY()
+	TObjectPtr<UAttributeSet> AttributeSet;
+
 	/** Called for movement input */
 	void Move(const FInputActionValue& Value);
 

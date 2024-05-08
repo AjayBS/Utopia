@@ -1,4 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
+// Copyright Confused Minds, Ltd. All Rights Reserved.
 
 
 #include "AbilitySystem/UtopiaAbilitySystemComponent.h"
