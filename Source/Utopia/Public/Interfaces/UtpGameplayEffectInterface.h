@@ -12,7 +12,7 @@ class UGameplayEffect;
 UINTERFACE(Blueprintable, MinimalAPI)
 class UUtpGameplayEffectInterface : public UInterface
 {
-	GENERATED_BODY()
+	GENERATED_UINTERFACE_BODY()
 };
 
 /**
@@ -20,11 +20,10 @@ class UUtpGameplayEffectInterface : public UInterface
  */
 class UTOPIA_API IUtpGameplayEffectInterface
 {
-	GENERATED_BODY()
+	GENERATED_IINTERFACE_BODY()
 
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
-	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
-	void ApplyEffectToTarget(AActor* Target, TSubclassOf<UGameplayEffect> GameplayEffectClass, AActor* OwningActor);
-	virtual void ApplyEffectToTarget_Implementation(AActor* Target, TSubclassOf<UGameplayEffect> GameplayEffectClass, AActor* OwningActor);
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	void ApplyEffectToTarget(AActor* TargetActor, TSubclassOf<UGameplayEffect> GameplayEffectClass);
 };
