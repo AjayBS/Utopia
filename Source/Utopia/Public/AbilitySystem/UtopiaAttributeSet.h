@@ -25,10 +25,10 @@ public:
 	UUtopiaAttributeSet();
 
 	UPROPERTY(BlueprintReadOnly, Category ="Vital Attributes")
-	FGameplayAttributeData Lives;
-	ATTRIBUTE_ACCESSORS(UUtopiaAttributeSet, Lives);
+	FGameplayAttributeData Health;
+	ATTRIBUTE_ACCESSORS(UUtopiaAttributeSet, Health);
 
 	UPROPERTY(BlueprintReadOnly, Category = "Vital Attributes")
-	FGameplayAttributeData MaxLives;
-	ATTRIBUTE_ACCESSORS(UUtopiaAttributeSet, MaxLives);
+	FGameplayAttributeData MaxHealth;
+	ATTRIBUTE_ACCESSORS(UUtopiaAttributeSet, MaxHealth);
 };

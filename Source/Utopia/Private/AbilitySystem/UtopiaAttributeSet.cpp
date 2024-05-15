@@ -5,6 +5,6 @@
 
 UUtopiaAttributeSet::UUtopiaAttributeSet()
 {
-	InitLives(3.0f);
-	InitMaxLives(3.0f);
+	InitHealth(100.0f);
+	InitMaxHealth(100.0f);
 }
