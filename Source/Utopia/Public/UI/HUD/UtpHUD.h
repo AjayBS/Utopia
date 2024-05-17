@@ -7,6 +7,10 @@
 #include "UtpHUD.generated.h"
 
 class UUtpUserWidget;
+class UOverlayWidgetController;
+struct FWidgetControllerParams;
+class UAbilitySystemComponent;
+class UAttributeSet;
 
 /**
  * 
@@ -20,11 +24,19 @@ public:
 	UPROPERTY()
 	TObjectPtr<UUtpUserWidget> OverlayWidget;
 
-protected:
-	virtual void BeginPlay();
+	UOverlayWidgetController* GetOverlayWidgetController();
+	UOverlayWidgetController* SetOverlayWidgetController(const FWidgetControllerParams& WCParams);
+
+	void InitOverlay(APlayerController* PC, UAbilitySystemComponent* ASC, UAttributeSet* AS);
 
 private:
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UUtpUserWidget> OverlayWidgetClass;
+
+	UPROPERTY()
+	TObjectPtr<UOverlayWidgetController> OverlayWidgetController;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UOverlayWidgetController> OverlayWidgetControllerClass;
 
 };

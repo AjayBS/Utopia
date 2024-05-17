@@ -13,6 +13,9 @@
 #include "InputActionValue.h"
 #include "Engine/LocalPlayer.h"
 
+#include "Utopia/UtopiaPlayerController.h"
+#include "UI/HUD/UtpHUD.h"
+
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
@@ -55,6 +58,12 @@ void AUtopiaCharacter::BeginPlay()
 
 	check(AbilitySystemComponent);
 	AbilitySystemComponent->InitAbilityActorInfo(this, this);
+
+	if (AUtopiaPlayerController* UtpPlayerController = Cast<AUtopiaPlayerController>(GetController()))
+	{
+		AUtpHUD* UtpHUD = Cast<AUtpHUD>(UtpPlayerController->GetHUD());
+		UtpHUD->InitOverlay(UtpPlayerController, AbilitySystemComponent, AttributeSet);
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////// Input
