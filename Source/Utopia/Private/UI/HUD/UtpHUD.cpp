@@ -40,6 +40,7 @@ void AUtpHUD::InitOverlay(APlayerController* PC, UAbilitySystemComponent* ASC, U
 	}
 
 	OverlayWidget->SetWidgetController(WidgetController);
+	WidgetController->BroadcastInitialValues();
 
 	Widget->AddToViewport();
 }

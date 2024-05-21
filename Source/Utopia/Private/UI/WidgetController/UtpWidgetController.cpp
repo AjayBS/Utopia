@@ -9,3 +9,7 @@ void UUtpWidgetController::SetWidgetControllerParams(const FWidgetControllerPara
 	AbilitySystemComponent = WCParams.AbilitySystemComponent;
 	AttributeSet = WCParams.AttributeSet;
 }
+
+void UUtpWidgetController::BroadcastInitialValues()
+{
+}

@@ -5,16 +5,16 @@
 
 UUtopiaAttributeSet::UUtopiaAttributeSet()
 {
-	InitHealth(100.0f);
-	InitMaxHealth(100.0f);
+	InitVision(0.f);
+	InitMaxVision(100.0f);
 }
 
 void UUtopiaAttributeSet::PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue)
 {
 	Super::PreAttributeChange(Attribute, NewValue);
 
-	if (Attribute == GetHealthAttribute())
+	if (Attribute == GetVisionAttribute())
 	{
-		NewValue = FMath::Clamp(NewValue, 0.f, GetMaxHealth());
+		NewValue = FMath::Clamp(NewValue, 0.f, GetMaxVision());
 	}
 }

@@ -27,10 +27,10 @@ public:
 	virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue) override;
 
 	UPROPERTY(BlueprintReadOnly, Category ="Vital Attributes")
-	FGameplayAttributeData Health;
-	ATTRIBUTE_ACCESSORS(UUtopiaAttributeSet, Health);
+	FGameplayAttributeData Vision;
+	ATTRIBUTE_ACCESSORS(UUtopiaAttributeSet, Vision);
 
 	UPROPERTY(BlueprintReadOnly, Category = "Vital Attributes")
-	FGameplayAttributeData MaxHealth;
-	ATTRIBUTE_ACCESSORS(UUtopiaAttributeSet, MaxHealth);
+	FGameplayAttributeData MaxVision;
+	ATTRIBUTE_ACCESSORS(UUtopiaAttributeSet, MaxVision);
 };
