@@ -13,3 +13,7 @@ void UUtpWidgetController::SetWidgetControllerParams(const FWidgetControllerPara
 void UUtpWidgetController::BroadcastInitialValues()
 {
 }
+
+void UUtpWidgetController::BindCallbacksToDependencies()
+{
+}
