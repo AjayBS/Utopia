@@ -4,12 +4,32 @@
 
 #include "CoreMinimal.h"
 #include "UI/WidgetController/UtpWidgetController.h"
+#include "GameplayTagContainer.h"
 #include "OverlayWidgetController.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnVisionChangedSignature, float, NewVision);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnMaxVisionChangedSignature, float, MaxVision);
 
 struct FOnAttributeChangeData;
+class UUtpUserWidget;
+
+USTRUCT(BlueprintType)
+struct FUIWidgetRow : public FTableRowBase
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FGameplayTag MessageTag = FGameplayTag();
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FText Message = FText();
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<UUtpUserWidget> MessageWidget;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UTexture2D* Image = nullptr;
+};
 
 /**
  * 

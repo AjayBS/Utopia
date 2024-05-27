@@ -17,6 +17,7 @@ struct FInputActionValue;
 
 class UAbilitySystemComponent;
 class UAttributeSet;
+class UGameplayAbility;
 
 DECLARE_LOG_CATEGORY_EXTERN(LogTemplateCharacter, Log, All);
 
@@ -49,6 +50,10 @@ public:
 protected:
 	virtual void BeginPlay();
 
+private:
+	UPROPERTY(EditAnywhere, Category = "Abilities")
+	TArray<TSubclassOf<UGameplayAbility>> StartupAbilities;
+
 public:
 		
 	/** Look Input Action */
@@ -56,6 +61,8 @@ public:
 	class UInputAction* LookAction;
 
 protected:
+	void AddCharacterAbilities();
+	
 protected:
 	UPROPERTY()
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;

@@ -6,19 +6,23 @@
 
 #include "AbilitySystemBlueprintLibrary.h"
 #include "AbilitySystemComponent.h"
+#include "AbilitySystem/UtopiaAbilitySystemComponent.h"
 
 AUtpAIBaseActor::AUtpAIBaseActor()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 	SetRootComponent(CreateDefaultSubobject<USceneComponent>("SceneRoot"));
+	AbilitySystemComponent = CreateDefaultSubobject<UUtopiaAbilitySystemComponent>("AbilitySystemComponent");
 }
 
 // Called when the game starts or when spawned
 void AUtpAIBaseActor::BeginPlay()
 {
-	Super::BeginPlay();
+	Super::BeginPlay();	
 	
+	AbilitySystemComponent->InitAbilityActorInfo(this, this);
+	Cast<UUtopiaAbilitySystemComponent>(AbilitySystemComponent)->AbilityActorInfoSet();
 }
 
 void AUtpAIBaseActor::ApplyEffectToTarget(AActor* TargetActor, TSubclassOf<UGameplayEffect> GameplayEffectClass)

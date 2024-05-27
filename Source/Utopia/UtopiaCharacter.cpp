@@ -2,6 +2,7 @@
 
 #include "UtopiaCharacter.h"
 #include "UtopiaProjectile.h"
+#include "Abilities/GameplayAbility.h"
 #include "AbilitySystem/UtopiaAbilitySystemComponent.h"
 #include "AbilitySystem/UtopiaAttributeSet.h"
 #include "Animation/AnimInstance.h"
@@ -15,6 +16,7 @@
 
 #include "Utopia/UtopiaPlayerController.h"
 #include "UI/HUD/UtpHUD.h"
+
 
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
@@ -58,6 +60,8 @@ void AUtopiaCharacter::BeginPlay()
 
 	check(AbilitySystemComponent);
 	AbilitySystemComponent->InitAbilityActorInfo(this, this);
+	Cast<UUtopiaAbilitySystemComponent>(AbilitySystemComponent)->AbilityActorInfoSet();
+	AddCharacterAbilities();
 
 	if (AUtopiaPlayerController* UtpPlayerController = Cast<AUtopiaPlayerController>(GetController()))
 	{
@@ -89,6 +93,12 @@ void AUtopiaCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	}
 }
 
+
+void AUtopiaCharacter::AddCharacterAbilities()
+{
+	UUtopiaAbilitySystemComponent* UtpASC = CastChecked<UUtopiaAbilitySystemComponent>(AbilitySystemComponent);
+	UtpASC->AddCharacterAbilities(StartupAbilities);
+}
 
 void AUtopiaCharacter::Move(const FInputActionValue& Value)
 {
