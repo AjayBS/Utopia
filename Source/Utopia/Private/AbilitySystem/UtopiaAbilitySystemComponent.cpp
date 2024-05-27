@@ -8,9 +8,17 @@ void UUtopiaAbilitySystemComponent::AbilityActorInfoSet()
 	OnGameplayEffectAppliedDelegateToSelf.AddUObject(this, &UUtopiaAbilitySystemComponent::EffectApplied);
 }
 
-void UUtopiaAbilitySystemComponent::EffectApplied(UAbilitySystemComponent* AbilitySystemComponent, const FGameplayEffectSpec& EffectSpec, FActiveGameplayEffectHandle ActiveEffectHandle)
+void UUtopiaAbilitySystemComponent::EffectApplied(UAbilitySystemComponent* AbilitySystemComponent, 
+											const FGameplayEffectSpec& EffectSpec, FActiveGameplayEffectHandle ActiveEffectHandle)
 {
-	GEngine->AddOnScreenDebugMessage(1, 8.f, FColor::Blue, FString("Effect applied."));
+	FGameplayTagContainer TagContainer;
+	EffectSpec.GetAllAssetTags(TagContainer);
+	for (const FGameplayTag& Tag : TagContainer)
+	{
+		// TODO: Broadcast tag to widget controller.
+		const FString Msg = FString::Printf(TEXT("GE Tag: %s"), *Tag.ToString());
+		GEngine->AddOnScreenDebugMessage(-1, 8.f, FColor::Blue, Msg);
+	}
 }
 
 void UUtopiaAbilitySystemComponent::AddCharacterAbilities(const TArray<TSubclassOf<UGameplayAbility>>& StartupAbilities)
