@@ -5,6 +5,7 @@
 
 #include "AbilitySystem/UtopiaAttributeSet.h"
 #include "GameplayEffectTypes.h"
+#include "AbilitySystem/UtopiaAbilitySystemComponent.h"
 
 void UOverlayWidgetController::BroadcastInitialValues()
 {
@@ -25,6 +26,21 @@ void UOverlayWidgetController::BindCallbacksToDependencies()
 	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(
 		UtpAttributeSet->GetMaxVisionAttribute()).AddUObject(
 			this, &UOverlayWidgetController::MaxVisionChanged);
+
+	Cast<UUtopiaAbilitySystemComponent>(AbilitySystemComponent)->EffectAssetTags.AddLambda(
+		[this](const FGameplayTagContainer& AssetTags)
+		{
+			for (const FGameplayTag& Tag : AssetTags)
+			{
+				FGameplayTag MessageTag = FGameplayTag::RequestGameplayTag(FName("Message"));
+				if (Tag.MatchesTag(MessageTag))
+				{
+					const FUIWidgetRow* Row = GetDataTableRowByTag<FUIWidgetRow>(MessageWidgetDataTable, Tag);
+					MessageWidgetRowDelegate.Broadcast(*Row);
+				}
+			}
+		}
+	);
 }
 
 void UOverlayWidgetController::VisionChanged(const FOnAttributeChangeData& Data) const

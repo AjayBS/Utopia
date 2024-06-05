@@ -6,6 +6,8 @@
 #include "AbilitySystemComponent.h"
 #include "UtopiaAbilitySystemComponent.generated.h"
 
+DECLARE_MULTICAST_DELEGATE_OneParam(FEffectAssetTags, const FGameplayTagContainer& /* AssetTags*/)
+
 /**
  * 
  */
@@ -15,6 +17,9 @@ class UTOPIA_API UUtopiaAbilitySystemComponent : public UAbilitySystemComponent
 	GENERATED_BODY()
 
 public:
+	
+	FEffectAssetTags EffectAssetTags;
+
 	void AbilityActorInfoSet();
 
 protected:
